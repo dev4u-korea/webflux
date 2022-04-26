@@ -19,6 +19,7 @@ public class EchoController {
     @GetMapping("/stream")
     Flux<Map<String, Integer>> stream() {
         Stream<Integer> stream = Stream.iterate(0, i -> i + 1); // Java8의 무한Stream
+
         return Flux.fromStream(stream.limit(1000))
                 .map(i -> Collections.singletonMap("value", i));
     }
